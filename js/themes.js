@@ -44,8 +44,9 @@
   ];
 
   var PROJECTS_AI = [
-    { href: 'https://github.com/no-more-care/master-claw', title: 'Master Claw',  i18n: 'proj_masterclaw_desc',  tags: ['AI', 'GameDev', 'GitHub'], perm: '-rwxr-xr-x', featured: true },
-    { href: null,                                           title: 'IncreMemory', i18n: 'proj_increMemory_desc', tags: ['Game'],                    perm: '-rw-------', soon: true }
+    { href: 'https://github.com/no-more-care/master-claw',       title: 'Master Claw',     i18n: 'proj_masterclaw_desc',  tags: ['AI', 'GameDev', 'GitHub'], perm: '-rwxr-xr-x', featured: true },
+    { href: 'https://www.moltbook.com/u/jinny_mnemonic',         title: 'Jinny Mnemonic',  i18n: 'proj_jinny_desc',       tags: ['AI', 'Agent'],             perm: '-rwxr-xr-x', featured: true },
+    { href: null,                                                 title: 'IncreMemory',     i18n: 'proj_increMemory_desc', tags: ['Game'],                    perm: '-rw-------', soon: true }
   ];
 
   var PROJECTS_QSP = [
