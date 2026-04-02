@@ -10,7 +10,7 @@
   --bg-alt:      #0a0a1c;
   --bg-card:     rgba(8, 10, 30, 0.82);
   --text:        #b8c4df;
-  --text-dim:    #4e5a7a;
+  --text-dim:    #7080a0;
   --text-bright: #eef1ff;
   --accent:      #00e5ff;   /* cyan */
   --accent-2:    #00ff94;   /* green */
@@ -515,6 +515,7 @@ main { outline: none; }
 }
 .games-grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: start;
 }
 
 /* card base */
@@ -572,7 +573,7 @@ a.project-card:hover::after { opacity: 1; }
   line-height: 1.4;
   flex: 1;
 }
-.card-desc { font-size: 0.68rem; color: var(--text-dim); }
+.card-desc { font-size: 0.68rem; color: var(--text-dim); min-height: 2.8em; }
 .card-arrow {
   font-size: 1rem;
   color: var(--accent);

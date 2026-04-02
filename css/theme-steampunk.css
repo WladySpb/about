@@ -10,7 +10,7 @@
   --copper:  #8b4513;
   --cream:   #e8d5a0;
   --cream-d: #b09060;
-  --rust:    #7a3a10;
+  --rust:    #c05a28;
   --steam:   rgba(200,134,10,0.15);
   --border:  rgba(200,134,10,0.25);
   --border-h:rgba(200,134,10,0.7);
@@ -274,10 +274,23 @@ footer {
 /* RESPONSIVE */
 @media (max-width: 860px) {
   .nav-links { display: none; }
+  .nav::before, .nav::after { display: none; }
+  .nav { padding: 0.9rem 1.5rem; }
   .hero { flex-direction: column-reverse; gap: 2rem; padding: 6rem 1.5rem 3rem; }
   .hero-visual { width: 160px; height: 160px; }
   .gear-outer { width: 140px; height: 140px; }
   .gear-mid { width: 100px; height: 100px; }
   .gear-inner { width: 52px; height: 52px; }
   .gear-center { width: 26px; height: 26px; }
+  .section { padding: 3.5rem 1.5rem; }
+  footer { padding: 1rem 1.5rem; flex-direction: column; gap: 0.3rem; text-align: center; }
+}
+@media (max-width: 560px) {
+  .nav { padding: 0.7rem 1rem; }
+  .nav-brand { font-size: 0.9rem; letter-spacing: 2px; }
+  .hero-name { letter-spacing: 2px; }
+  .section { padding: 2.5rem 1rem; }
+  .about-cols { grid-template-columns: 1fr; }
+  .projects-cols { grid-template-columns: 1fr; }
+  .contact-grid { flex-direction: column; }
 }
