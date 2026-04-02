@@ -1,0 +1,11 @@
+# Development / meta files
+progress.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

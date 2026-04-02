@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wlady — info.wladyspb.pro</title>
+  <meta name="description" content="Personal page of Wlady — Engineer, Game Developer, System Architect" />
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Wlady" />
+  <meta property="og:description" content="Engineer · Game Developer · System Architect" />
+  <meta property="og:url"         content="https://info.wladyspb.pro" />
+  <meta property="og:type"        content="website" />
+
+  <!-- All fonts preloaded so every theme has them available instantly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@400;700;900&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- themes.js is loaded synchronously in <head> so it can:
+       1. inject the theme CSS <link> immediately (before layout)
+       2. register its DOMContentLoaded listener BEFORE i18n.js
+          so the HTML is rendered first, then translated           -->
+  <script src="js/themes.js"></script>
+
+  <!-- i18n.js registers its own DOMContentLoaded listener;
+       because themes.js registered first, themes render first     -->
+  <script src="js/i18n.js"></script>
+
+  <style>
+    /* Hide body until themes.js reveals it — prevents FOUC */
+    body { opacity: 0; }
+  </style>
+</head>
+<body>
+  <!-- themes.js replaces body content on DOMContentLoaded -->
+</body>
+</html>
