@@ -43,13 +43,16 @@
     { href: 'mailto:wladyspb85@gmail.com',                             icon: 'email',    name: 'Email',       label: 'email', mail: true }
   ];
 
-  var PROJECTS_AI = [
-    { href: 'https://github.com/no-more-care/master-claw',  title: 'Master Claw',         i18n: 'proj_masterclaw_desc',     tags: ['AI', 'GameDev', 'GitHub'], perm: '-rwxr-xr-x', featured: true },
-    { href: 'https://www.moltbook.com/u/jinny_mnemonic',    title: 'Jinny Mnemonic',      i18n: 'proj_jinny_desc',          tags: ['AI', 'Agent'],             perm: '-rwxr-xr-x', featured: true },
-    { href: 'https://nomorecare.gg',                        title: 'No More Care Studio', i18n: 'proj_nomorecare_desc',     tags: ['Studio', 'GameDev'],       perm: '-rwxr-xr-x', featured: true },
-    { href: 'https://nomorecare.gg',                        title: 'Terminal Stake',      i18n: 'proj_terminal_stake_desc', tags: ['Roguelike', 'GameDev'],    perm: '-rwxr-xr-x', featured: true },
-    { href: null,                                           title: 'IncreMemory',         i18n: 'proj_increMemory_desc',    tags: ['Auto-battler'],            perm: '-rw-------', soon: true },
-    { href: null,                                           title: 'Increvolution',       i18n: 'proj_increvolution_desc',  tags: ['Roguelike'],               perm: '-rw-------', soon: true }
+  var PROJECTS_PERSONAL = [
+    { href: 'https://github.com/no-more-care/master-claw', title: 'Master Claw',    i18n: 'proj_masterclaw_desc', tags: ['AI', 'GameDev', 'GitHub'], perm: '-rwxr-xr-x' },
+    { href: 'https://www.moltbook.com/u/jinny_mnemonic',   title: 'Jinny Mnemonic', i18n: 'proj_jinny_desc',      tags: ['AI', 'Agent'],             perm: '-rwxr-xr-x' }
+  ];
+
+  var PROJECTS_STUDIO = [
+    { href: 'https://nomorecare.gg', title: 'No More Care Studio', i18n: 'proj_nomorecare_desc',     tags: ['Studio', 'GameDev'], perm: '-rwxr-xr-x' },
+    { href: 'https://nomorecare.gg', title: 'Terminal Stake',      i18n: 'proj_terminal_stake_desc', tags: ['Roguelike', 'GameDev'], perm: '-rwxr-xr-x' },
+    { href: null,                    title: 'IncreMemory',         i18n: 'proj_increMemory_desc',    tags: ['Auto-battler'],        perm: '-rw-------', soon: true },
+    { href: null,                    title: 'Increvolution',       i18n: 'proj_increvolution_desc',  tags: ['Roguelike'],           perm: '-rw-------', soon: true }
   ];
 
   var PROJECTS_QSP = [
@@ -114,7 +117,7 @@
           '<span class="social-name">' + s.name + '</span></a>';
       }).join('');
 
-      var aiCards = PROJECTS_AI.map(function (p) {
+      function buildCard(p) {
         if (p.href) {
           return '<a href="' + p.href + '" target="_blank" rel="noopener noreferrer" class="project-card featured">' +
             '<div class="card-tags">' + p.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>' +
@@ -123,11 +126,13 @@
             '<span class="card-arrow">→</span></a>';
         }
         return '<div class="project-card coming-soon">' +
-          '<div class="card-tags"><span class="tag">Game</span><span class="tag tag-soon" data-i18n="coming_soon">Coming Soon</span></div>' +
+          '<div class="card-tags"><span class="tag tag-soon" data-i18n="coming_soon">Coming Soon</span></div>' +
           '<h4 class="card-title">' + p.title + '</h4>' +
           '<p class="card-desc" data-i18n="' + p.i18n + '"></p>' +
           '<span class="card-arrow lock">◈</span></div>';
-      }).join('');
+      }
+      var personalCards = PROJECTS_PERSONAL.map(buildCard).join('');
+      var studioCards   = PROJECTS_STUDIO.map(buildCard).join('');
 
       var qspCards = PROJECTS_QSP.map(function (p) {
         return '<a href="' + p.href + '" target="_blank" rel="noopener noreferrer" class="project-card">' +
@@ -179,7 +184,8 @@
           '</div></section>' +
           '<section class="section" id="projects"><div class="container">' +
             '<h2 class="section-title" data-i18n="projects_title">Projects</h2>' +
-            '<div class="projects-group"><h3 class="group-title" data-i18n="group_ai">AI &amp; Gamedev</h3><div class="projects-grid">' + aiCards + '</div></div>' +
+            '<div class="projects-group"><h3 class="group-title" data-i18n="group_ai">AI &amp; Agents</h3><div class="projects-grid">' + personalCards + '</div></div>' +
+            '<div class="projects-group"><h3 class="group-title" data-i18n="group_studio">No More Care Studio</h3><div class="projects-grid">' + studioCards + '</div></div>' +
             '<div class="projects-group"><h3 class="group-title" data-i18n="group_qsp">Text Adventure Games</h3><div class="projects-grid games-grid">' + qspCards + '</div></div>' +
           '</div></section>' +
           '<section class="section" id="contact"><div class="container">' +
@@ -280,21 +286,23 @@
           '<span class="conn-name">' + displayURL + '</span></a>';
       }).join('');
 
-      var aiFiles = PROJECTS_AI.map(function (p) {
+      function buildFile(p, tag) {
         var slug = p.title.toLowerCase().replace(/ /g, '-') + '/';
         if (p.href) {
           return '<a href="' + p.href + '" target="_blank" rel="noopener" class="file-item">' +
             '<span class="file-perm">' + p.perm + '</span>' +
             '<div class="file-info"><div class="file-name">' + slug + '</div>' +
             '<div class="file-desc" data-i18n="' + p.i18n + '"></div></div>' +
-            '<span class="file-tag tag-feat">AI</span></a>';
+            '<span class="file-tag tag-feat">' + tag + '</span></a>';
         }
         return '<div class="file-item">' +
           '<span class="file-perm">' + p.perm + '</span>' +
           '<div class="file-info"><div class="file-name">' + slug + '</div>' +
           '<div class="file-desc" data-i18n="' + p.i18n + '"></div></div>' +
           '<span class="file-tag tag-soon" data-i18n="coming_soon">Coming Soon</span></div>';
-      }).join('');
+      }
+      var personalFiles = PROJECTS_PERSONAL.map(function (p) { return buildFile(p, 'AI'); }).join('');
+      var studioFiles   = PROJECTS_STUDIO.map(function (p) { return buildFile(p, 'DEV'); }).join('');
 
       var qspFiles = PROJECTS_QSP.map(function (p) {
         return '<a href="' + p.href + '" target="_blank" rel="noopener" class="file-item">' +
@@ -345,7 +353,8 @@
           '</section>' +
           '<section class="section" id="projects">' +
             '<h2 class="section-title" data-i18n="projects_title">Projects</h2>' +
-            '<div class="projects-group"><div class="group-title" data-i18n="group_ai">AI &amp; Gamedev</div><div class="file-list">' + aiFiles + '</div></div>' +
+            '<div class="projects-group"><div class="group-title" data-i18n="group_ai">AI &amp; Agents</div><div class="file-list">' + personalFiles + '</div></div>' +
+            '<div class="projects-group"><div class="group-title" data-i18n="group_studio">No More Care Studio</div><div class="file-list">' + studioFiles + '</div></div>' +
             '<div class="projects-group"><div class="group-title" data-i18n="group_qsp">Text Adventure Games</div><div class="file-list">' + qspFiles + '</div></div>' +
           '</section>' +
           '<section class="section" id="contact">' +
@@ -407,7 +416,7 @@
           '<span class="contact-name">' + s.name + '</span></a>';
       }).join('');
 
-      var aiBlueprints = PROJECTS_AI.map(function (p) {
+      function buildBlueprint(p) {
         if (p.href) {
           return '<a href="' + p.href + '" target="_blank" rel="noopener" class="blueprint">' +
             '<div class="bp-tags">' + p.tags.slice(0, 2).map(function (t) { return '<span class="bp-tag">' + t + '</span>'; }).join('') + '</div>' +
@@ -419,7 +428,9 @@
           '<div class="bp-tags"><span class="bp-tag-soon" data-i18n="coming_soon">Coming Soon</span></div>' +
           '<div class="bp-title">' + p.title + '</div>' +
           '<div class="bp-desc" data-i18n="' + p.i18n + '"></div></div>';
-      }).join('');
+      }
+      var personalBlueprints = PROJECTS_PERSONAL.map(buildBlueprint).join('');
+      var studioBlueprints   = PROJECTS_STUDIO.map(buildBlueprint).join('');
 
       var qspBlueprints = PROJECTS_QSP.map(function (p) {
         return '<a href="' + p.href + '" target="_blank" rel="noopener" class="blueprint">' +
@@ -469,8 +480,12 @@
           '<section class="section" id="projects">' +
             '<div class="section-header"><span class="section-ornament">⚙ ✦ ⚙</span><h2 class="section-title" data-i18n="projects_title">Projects</h2><div class="section-rule"></div></div>' +
             '<div style="margin-bottom:2rem">' +
-              '<div style="font-family:var(--font-h);font-size:0.65rem;letter-spacing:2px;color:var(--brass);margin-bottom:1rem;text-transform:uppercase" data-i18n="group_ai">AI &amp; Gamedev</div>' +
-              '<div class="projects-cols">' + aiBlueprints + '</div>' +
+              '<div style="font-family:var(--font-h);font-size:0.65rem;letter-spacing:2px;color:var(--brass);margin-bottom:1rem;text-transform:uppercase" data-i18n="group_ai">AI &amp; Agents</div>' +
+              '<div class="projects-cols">' + personalBlueprints + '</div>' +
+            '</div>' +
+            '<div style="margin-bottom:2rem">' +
+              '<div style="font-family:var(--font-h);font-size:0.65rem;letter-spacing:2px;color:var(--brass);margin-bottom:1rem;text-transform:uppercase" data-i18n="group_studio">No More Care Studio</div>' +
+              '<div class="projects-cols">' + studioBlueprints + '</div>' +
             '</div>' +
             '<div style="font-family:var(--font-h);font-size:0.65rem;letter-spacing:2px;color:var(--brass);margin-bottom:1rem;text-transform:uppercase" data-i18n="group_qsp">Text Adventures</div>' +
             '<div class="projects-cols">' + qspBlueprints + '</div>' +
@@ -547,19 +562,21 @@
     render: function () {
       var loginDate = new Date().toDateString();
 
-      var aiRows = PROJECTS_AI.map(function (p) {
+      function buildRow(p, meta) {
         var slug = p.perm + '  ' + p.title.toLowerCase().replace(/ /g, '-') + '/';
         if (p.href) {
           return '<div class="proj-row">' +
             '<a href="' + p.href + '" target="_blank" rel="noopener" class="proj-name">' + slug + '</a>' +
-            '<span class="proj-meta">[AI · gamedev · github]</span>' +
+            '<span class="proj-meta">[' + meta + ']</span>' +
             '<div class="proj-desc" data-i18n="' + p.i18n + '"></div></div>';
         }
         return '<div class="proj-row">' +
           '<span class="proj-name dim">' + slug + '</span>' +
           '<span class="proj-meta yellow" data-i18n="coming_soon">coming soon</span>' +
           '<div class="proj-desc" data-i18n="' + p.i18n + '"></div></div>';
-      }).join('');
+      }
+      var personalRows = PROJECTS_PERSONAL.map(function (p) { return buildRow(p, 'AI · agent'); }).join('');
+      var studioRows   = PROJECTS_STUDIO.map(function (p) { return buildRow(p, 'nomorecare.gg'); }).join('');
 
       var qspRows = PROJECTS_QSP.map(function (p) {
         return '<div class="proj-row">' +
@@ -577,7 +594,7 @@
           '<a href="' + s.href + '"' + (s.mail ? '' : ' target="_blank" rel="noopener"') + '>' + url + '</a></div>';
       }).join('');
 
-      var total = PROJECTS_AI.length + PROJECTS_QSP.length;
+      var total = PROJECTS_PERSONAL.length + PROJECTS_STUDIO.length + PROJECTS_QSP.length;
 
       return (
         '<div class="titlebar">' +
@@ -616,8 +633,10 @@
           '<div class="output" id="projects">' +
             '<div class="sep"># ── <span data-i18n="projects_title">Projects</span> ─────────────────────────────────</div>' +
             '<div class="dim" style="margin-bottom:0.5rem">total ' + total + '  drwxr-xr-x  wlady  ./</div>' +
-            '<div class="dim" style="font-size:0.7rem;margin-bottom:0.4rem"># <span data-i18n="group_ai">AI &amp; Gamedev</span></div>' +
-            aiRows +
+            '<div class="dim" style="font-size:0.7rem;margin-bottom:0.4rem"># <span data-i18n="group_ai">AI &amp; Agents</span></div>' +
+            personalRows +
+            '<div class="dim" style="font-size:0.7rem;margin:0.8rem 0 0.4rem"># <span data-i18n="group_studio">No More Care Studio</span></div>' +
+            studioRows +
             '<div class="dim" style="font-size:0.7rem;margin:0.8rem 0 0.4rem"># <span data-i18n="group_qsp">Text Adventure Games</span></div>' +
             qspRows +
           '</div>' +
